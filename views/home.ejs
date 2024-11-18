@@ -1,0 +1,152 @@
+<!--isme html code likhenge -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e2f; /* Dark background */
+            color: #ffffff; /* White text */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #ffcc00; /* Bright yellow for the title */
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            background-color: #2a2a3c; /* Darker form background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffcc00; /* Bright yellow for labels */
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ffcc00; /* Yellow border */
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color: #3a3a4d; /* Input background */
+            color: #ffffff; /* Input text color */
+        }
+
+        button[type="submit"] {
+            background-color: #ffcc00; /* Bright yellow button */
+            color: #1e1e2f; /* Dark text for contrast */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #e6b800; /* Darker yellow on hover */
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin-top: 50px;
+            background-color: #2a2a3c; /* Darker table background */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #444; /* Darker border */
+            text-align: left;
+        }
+
+        th {
+            background-color: #ffcc00; /* Bright yellow for header */
+            color: #1e1e2f; /* Dark text for contrast */
+        }
+
+        tr:hover {
+            background-color: #3a3a4d; /* Highlight row on hover */
+        }
+
+        @media screen and (max-width: 768px) {
+            form,
+            table {
+                width: 100%;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-Egde" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+
+<body>
+<h1>
+    URL Shortner By Aizaz 
+</h1>
+<% if (locals.id) {%> <!--locals mean backend se jo data arha wo locals k ander hota -->
+    <p>URL Generated: http://localhost:8001/url/<%=id %>
+    </p>
+    <% } %>
+        <div>
+            <form method="post" action="/url">
+                <label>Enter your Original URL</label>
+                <input type="text" name="url" placeholder="https://example.com" /><br>
+                <button type="submit">Generate</button>
+            </form>
+        </div>
+        <div>
+            <% if(locals.urls) { %>
+                <table>
+                    <thead>
+                        <th>S.no</th>
+                        <th>ShortID</th>
+                        <th>Redirect</th>
+                        <th>Clicks</th>
+                    </thead>
+                    <tbody>
+                        <% urls.forEach((url,index)=> { %>
+                            <tr>                          <td>
+                                <%= index+1 %>
+                            </td>
+                            <td>
+                                <%= url.shortId %>
+                            </td>
+                            <td>
+                                <%= url.redirectURL %>
+                            </td>
+                            <td>
+                                <%= url.visitHistory.length %>
+                            </td>
+                        </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } %>
+        </div>
+    </body>
+</html>
+
+<!-- http://localhost:8001/url/1eQbtb-XC krenge website oen hojaigi 
+  http://localhost:8001/url Generate krwane k liye short id
+   http://localhost:8001/ for Analytics -->
