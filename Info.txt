@@ -1,0 +1,6 @@
+Statefull authentication
+//Hr user apni analytics dekh skta
+- Is me problem ye hai k Jub b server restart krenge users logot hojainge.
+- Statefull authentication memory intensive hota, means wo humare server ki memory use krta
+
+This is the problem with statefull, isko hum solve krenge

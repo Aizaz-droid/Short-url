@@ -14,6 +14,12 @@ const urlSchema = new mongoose.Schema({
     },
     //Visithistory 1 array hai jis k andr hum dkh skte kitne baje click huwa
     visitHistory: [{ timestamp: { type: Number } }],
+createdBy:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+}
+
+
 },
     { timestamps: true }
 );
